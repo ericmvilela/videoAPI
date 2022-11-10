@@ -7,4 +7,5 @@ urlpatterns = [
     path('me/', apis.UserApi.as_view(), name='me'),
     path("logout/", apis.LogoutApi.as_view(), name="logout"),
     path("edit/", apis.EditApi.as_view(), name="logout"),
+    path("confirm/", apis.CheckLogin.as_view(), name="confirm"),
 ]
