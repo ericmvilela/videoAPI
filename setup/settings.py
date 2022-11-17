@@ -9,10 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import datetime
 from pathlib import Path
 import os
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,17 +88,6 @@ DATABASES = {
     }
 }
 
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'celtic-truck-331917:southamerica-east1:drf-video',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': '34.95.221.7',
-        'PORT': '3306',
-    }
-}'''
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -153,6 +140,3 @@ AUTH_USER_MODEL = 'accounts.User'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
-
-django_heroku.settings(locals())
