@@ -8,7 +8,11 @@ from . import models
 class CustomUserAuthentication(authentication.BaseAuthentication):
 
     def authenticate(self, request):
-        token = request.COOKIES.get('jwt')
+
+        if 'X-Authorization' in request.headers:
+            token = request.headers['X-Authorization']
+        else:
+            token = request.COOKIES.get('jwt')
 
         if not token:
             return None
