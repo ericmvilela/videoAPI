@@ -17,6 +17,6 @@ class VideoAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'titulo', )
 
 
-admin.site.register(models.Categoria, CategoriaAdmin)
+admin.site.register(models.Curso, CategoriaAdmin)
 admin.site.register(models.Modulo, ModuloAdmin)
 admin.site.register(models.Video, VideoAdmin)

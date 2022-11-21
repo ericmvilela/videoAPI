@@ -1,7 +1,7 @@
-from cursos.serializer import VideoSerializer, ModuloSerializer, CategoriaSerializer, AllCategoriaSerializer, \
+from cursos.serializer import VideoSerializer, ModuloSerializer, CursoSerializer, AllCursoSerializer, \
     AllModuloSerializer
 from rest_framework import views, permissions, response
-from cursos.models import Video, Modulo, Categoria
+from cursos.models import Video, Modulo, Curso
 from accounts.authentication import CustomUserAuthentication
 from urllib.parse import urlparse, parse_qs
 
@@ -77,7 +77,7 @@ class ModuloViewSet(views.APIView):
         return response.Response(serializer.data)
 
     def post(self, request, idCat):
-        categoria = Categoria.objects.filter(id=idCat)
+        categoria = Curso.objects.filter(id=idCat)
         if not categoria:
             return response.Response({'message': 'Id inválido'}, status=400)
 
@@ -98,26 +98,26 @@ class ModuloViewSet(views.APIView):
         return response.Response(serializer.data, 201)
 
 
-class CategoriaViewSet(views.APIView):
+class CursoViewSet(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = (CustomUserAuthentication,)
 
     def get(self, request, idCat=0):
         if idCat == 0:
-            serializer = AllCategoriaSerializer(Categoria.objects.all(), many=True)
+            serializer = AllCursoSerializer(Curso.objects.all(), many=True)
             return response.Response(serializer.data)
 
         else:
-            serializer = CategoriaSerializer(Categoria.objects.filter(id=idCat).first())
+            serializer = CursoSerializer(Curso.objects.filter(id=idCat).first())
             return response.Response(serializer.data)
 
     def post(self, request):
-        serializer = AllCategoriaSerializer(data=request.data)
+        serializer = AllCursoSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
-        newCategoria = Categoria(**data)
-        newCategoria.save()
-        serializer = AllCategoriaSerializer(newCategoria)
+        newCurso = Curso(**data)
+        newCurso.save()
+        serializer = AllCursoSerializer(newCurso)
 
         return response.Response(serializer.data, 201)

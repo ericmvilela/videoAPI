@@ -123,6 +123,11 @@ class EditApi(views.APIView):
             user.name = request.data['name']
         if 'birthdate' in request.data:
             user.birthdate = request.data['birthdate']
+        if 'teacher' in request.data:
+            if request.data['teacher'].lower() == 'true':
+                user.teacher = True
+            else:
+                user.teacher = False
 
         user.save()
         serializer = user_serializer.EditSerializer(user)

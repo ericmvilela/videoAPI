@@ -12,6 +12,7 @@ class UserSerializer(serializers.Serializer):
     createdAt = serializers.DateField(required=False)
     lastUpdate = serializers.DateTimeField(required=False)
     profilePic = serializers.ImageField(required=False)
+    teacher = serializers.BooleanField(required=False)
 
     def to_internal_value(self, data):
         data = super().to_internal_value(data)

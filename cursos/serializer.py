@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from cursos.models import Video, Modulo, Categoria
+from cursos.models import Video, Modulo, Curso
 
 
 class VideoSerializer(serializers.ModelSerializer):
@@ -24,15 +24,15 @@ class AllModuloSerializer(serializers.ModelSerializer):
         fields = ['id', 'titulo', 'categoria']
 
 
-class CategoriaSerializer(serializers.ModelSerializer):
-    modulos = AllModuloSerializer(many=True)
+class CursoSerializer(serializers.ModelSerializer):
+    modulos = ModuloSerializer(many=True)
 
     class Meta:
-        model = Categoria
-        fields = ['id', 'titulo', 'descricao', 'modulos']
+        model = Curso
+        fields = ['id', 'titulo', 'image', 'descricao', 'modulos']
 
 
-class AllCategoriaSerializer(serializers.ModelSerializer):
+class AllCursoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Categoria
-        fields = ['id', 'titulo', 'descricao']
+        model = Curso
+        fields = ['id', 'titulo', 'descricao', 'image']
