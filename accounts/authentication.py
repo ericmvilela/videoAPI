@@ -9,8 +9,8 @@ class CustomUserAuthentication(authentication.BaseAuthentication):
 
     def authenticate(self, request):
 
-        if 'X-Authorization' in request.headers:
-            token = request.headers['X-Authorization']
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization'].split(" ")[1]
         else:
             token = request.COOKIES.get('jwt')
 
